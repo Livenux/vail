@@ -1,0 +1,36 @@
+# 配置文件
+# 使用方法: 复制此文件为 config.toml 并修改配置
+
+[server]
+host = "0.0.0.0"
+port = 8080
+
+[database]
+host = "localhost"
+port = 5432
+username = "postgres"
+password = "your_password"
+database = "vail"
+
+[redis]
+# 使用 PostgreSQL UNLOGGED 替代 Redis
+# 如果需要额外缓存可配置
+enabled = false
+
+[jwt]
+secret = "your-super-secret-jwt-key-change-in-production"
+expiration = 3600        # 1小时 (秒)
+refresh_expiration = 604800  # 7天
+
+[ssh]
+default_port = 22
+connection_timeout = 30
+keepalive_interval = 60
+
+[storage]
+# 上传文件临时目录
+temp_dir = "/tmp/vail"
+# 最大上传文件大小 (MB)
+max_upload_size = 1024
+# 默认分片大小 (1MB)
+default_chunk_size = 1048576

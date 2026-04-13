@@ -1,0 +1,58 @@
+[package]
+name = "vail-rs"
+version = "0.1.0"
+edition = "2021"
+description = "Vail - 下一代运维堡垒机后端"
+authors = ["Vail Team"]
+license = "MIT"
+
+[dependencies]
+# Web 框架
+axum = "0.7"
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "trace", "fs"] }
+
+# 异步运行时
+tokio = { version = "1", features = ["full"] }
+
+# 数据库
+sqlx = { version = "0.8", features = ["runtime-tokio-native-tls", "postgres", "migrate", "chrono"] }
+sea-orm = { version = "1", features = ["sqlx-postgres", "runtime-tokio-native-tls", "macros"] }
+
+# SSH/SFTP
+ssh2 = "0.9"
+
+# JSON
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# JWT
+jsonwebtoken = "9"
+bcrypt = "0.15"
+
+# 配置
+toml = "0.8"
+config = "0.14"
+
+# 日志
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing-appender = "0.2"
+
+# 工具
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "1"
+anyhow = "1"
+once_cell = "1"
+
+[dev-dependencies]
+sea-orm-mock = "1"
+
+[lib]
+name = "vail_rs"
+path = "src/lib.rs"
+
+[[bin]]
+name = "vail"
+path = "src/main.rs"
